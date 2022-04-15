@@ -31,6 +31,8 @@ jobs:
           start: npm run start-prod
           wait-on: 'http://localhost:5001'
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
       - uses: akhileshns/heroku-deploy@v3.12.12
         if: ${{ github.event_name == 'push' }}
         with:
