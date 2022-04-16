@@ -51,9 +51,10 @@ jobs:
         with:
           fetch-depth: '0'
       - name: Bump version and push tag
-        COMMIT_MESSAGES: ${{ toJson(join(github.event.commits.*.message, ' ')) }}
-        uses: anothrNick/github-tag-action@1.36.0
-        if: ${{ github.event_name == 'push' && !contains(COMMIT_MESSAGES, '#skip') }}
         env:
+          COMMIT_MESSAGES: ${{ toJson(join(github.event.commits.*.message, ' ')) }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
+        uses: anothrNick/github-tag-action@1.36.0
+        if: ${{ github.event_name == 'push' && !contains(env.COMMIT_MESSAGES, '#skip') }}
+          
