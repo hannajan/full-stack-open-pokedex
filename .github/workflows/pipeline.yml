@@ -47,12 +47,11 @@ jobs:
         if: ${{ success() }}
         with:
           severity: info
-          username: 'GitHub'
           avatarUrl: https://github.githubassets.com/images/modules/logos_page/Octocat.png
           text: A new version on Pokedex deployed
-          description: ' '
-          details: to https://hannajan-fullstack-pokedex.herokuapp.com by ${{ github.event.commits[0].author.username }}
-          footer: 'Severity: Informational'
+          description: to https://hannajan-fullstack-pokedex.herokuapp.com
+          details: by ${{ github.event.commits[0].author.username }}
+          footer: 'Informational'
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: build failure info
         uses: rjstone/discord-webhook-notify@v1
