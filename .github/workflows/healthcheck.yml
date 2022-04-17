@@ -10,6 +10,6 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Check health
-      uses: jtalk/url-health-check-action@v2
-      with:
-        url: https://hannajan-fullstack-pokedex.herokuapp.com/health
+        uses: jtalk/url-health-check-action@v2
+        with:
+          url: https://hannajan-fullstack-pokedex.herokuapp.com/health
