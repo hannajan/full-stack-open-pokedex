@@ -47,9 +47,10 @@ jobs:
         if: ${{ success() }}
         with:
           severity: info
+          username: 'GitHub'
           avatarUrl: https://github.githubassets.com/images/modules/logos_page/Octocat.png
           text: A new version on Pokedex deployed
-          description: ''
+          description: ' '
           details: to https://hannajan-fullstack-pokedex.herokuapp.com by ${{ github.event.commits[0].author.username }}
           footer: 'Severity: Informational'
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
