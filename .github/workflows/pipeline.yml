@@ -3,9 +3,9 @@ name: Deployment pipeline
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
-    branches: [master]
+    branches: [main]
     types: [opened, synchronize]
 
 jobs:
@@ -42,6 +42,14 @@ jobs:
           healthcheck: "https://hannajan-fullstack-pokedex.herokuapp.com/health"
           checkstring: "ok"
           rollbackonhealthcheckfailed: true
+      - name: deploy success info
+          uses: rjstone/discord-webhook-notify@v1
+          if: ${{ success() }}
+          with:
+              severity: info
+              text: A new version on Pokedex deployed
+              details: to 
+              webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
   tag_release:
     needs: [simple_deployment_pipeline]
