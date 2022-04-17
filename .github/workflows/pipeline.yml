@@ -28,7 +28,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           command: npm run test:e2e
-          start: npm run start-prod
+          start: npm run 
           wait-on: 'http://localhost:5001'
       - name: deploy to heroku
         env:
@@ -47,7 +47,9 @@ jobs:
         if: ${{ success() }}
         with:
           severity: info
+          avatarUrl: https://github.githubassets.com/images/modules/logos_page/Octocat.png
           text: A new version on Pokedex deployed
+          description:
           details: to https://hannajan-fullstack-pokedex.herokuapp.com by ${{ toJson(github.event.commits[0].author.username) }}
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: build failure info
@@ -55,6 +57,7 @@ jobs:
         if: ${{ failure() }}
         with:
           severity: error
+          avatarUrl: https://github.githubassets.com/images/modules/logos_page/Octocat.png
           text: Build failed
           description: commit
           details: ${{ toJson(github.event.commits[0].url) }} by ${{ toJson(github.event.commits[0].author.username) }} broke the build :(
