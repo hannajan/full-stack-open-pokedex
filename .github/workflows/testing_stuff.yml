@@ -3,7 +3,7 @@ name: Testing stuff
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   a_test_job:
@@ -16,7 +16,7 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - name: commits
         env:
-          COMMITS: ${{ toJson(github.event.commits[0].url) }}
+          COMMITS: ${{ toJson(github.event.commits[0].committer) }}
         run: echo "$COMMITS"
       - name: commit messages
         env:
