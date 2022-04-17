@@ -58,6 +58,7 @@ jobs:
           text: Build failed
           description: commit
           details: ${{ toJson(github.event.commits[0].url) }} by ${{ toJson(github.event.commits[0].author.username) }} broke the build :(
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
   tag_release:
     needs: [simple_deployment_pipeline]
