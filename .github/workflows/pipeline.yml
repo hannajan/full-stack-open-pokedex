@@ -3,7 +3,7 @@ name: Deployment pipeline
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches: [master]
     types: [opened, synchronize]
@@ -50,7 +50,7 @@ jobs:
           avatarUrl: https://github.githubassets.com/images/modules/logos_page/Octocat.png
           text: A new version on Pokedex deployed
           description: to https://hannajan-fullstack-pokedex.herokuapp.com
-          details: by ${{ github.event.commits[0].author.username }}
+          details: by ${{ github.event.commits[0].committer.username }}
           footer: 'Informational'
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: build failure info
@@ -61,7 +61,7 @@ jobs:
           avatarUrl: https://github.githubassets.com/images/modules/logos_page/Octocat.png
           text: Build failed
           description: commit
-          details: ${{ github.event.commits[0].url }} by ${{ github.event.commits[0].author.username }} broke the build :(
+          details: ${{ github.event.commits[0].url }} by ${{ github.event.commits[0].committer.username }} broke the build :(
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
   tag_release:
